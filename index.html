@@ -128,16 +128,29 @@
         }
 
         /* Skills */
+        .skill-group {
+            margin-bottom: 9px;
+        }
+
+        .skill-category-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
         .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 5px;
         }
 
         .skill-tag {
             background: #f0f0f0;
             color: var(--dark-text);
-            padding: 4px 6px;
+            padding: 3px 6px;
             border-radius: 3px;
             font-size: 11px;
             font-weight: 500;
@@ -460,17 +473,17 @@
 
             <div class="profile-header">
                 <h1 class="name">Chaitanya Pratap Narayan</h1>
-                <div class="title">Frontend Developer</div>
+                <div class="title">Python Full Stack Developer</div>
             </div>
 
             <div class="contact-section">
                 <h2 class="section-title">SUMMARY</h2>
 
                 <p>
-                    Frontend Developer skilled in building responsive web applications using React.js,
-                    JavaScript (ES6+), HTML, and CSS.
-                    Strong understanding of modern development practices, component-based architecture,
-                    and user experience design.
+                    Python Full Stack Developer skilled in building end-to-end web applications and RESTful APIs
+                    using Python, Django, PostgreSQL, MySQL, and React.js.
+                    Strong understanding of MVT/MVC architecture, database design, modern frontend development,
+                    and responsive user experience.
                 </p>
             </div>
 
@@ -514,16 +527,46 @@
             <div class="skills-section">
                 <h2 class="section-title">SKILLS</h2>
 
-                <ul class="skills-container">
-                    <li class="skill-tag">HTML</li>
-                    <li class="skill-tag">CSS</li>
-                    <li class="skill-tag">JavaScript</li>
-                    <li class="skill-tag">Bootstrap</li>
-                    <li class="skill-tag">React.js</li>
-                    <li class="skill-tag">Tailwind CSS</li>
-                    <li class="skill-tag">Git</li>
-                    <li class="skill-tag">GitHub</li>
-                </ul>
+                <div class="skill-group">
+                    <div class="skill-category-title">Backend & Core</div>
+                    <ul class="skills-container">
+                        <li class="skill-tag">Python</li>
+                        <li class="skill-tag">Django</li>
+                        <li class="skill-tag">Django REST Framework</li>
+                        <li class="skill-tag">RESTful APIs</li>
+                        <li class="skill-tag">OOPs</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-category-title">Databases</div>
+                    <ul class="skills-container">
+                        <li class="skill-tag">PostgreSQL</li>
+                        <li class="skill-tag">MySQL</li>
+                        <li class="skill-tag">SQLite</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-category-title">Frontend</div>
+                    <ul class="skills-container">
+                        <li class="skill-tag">React.js</li>
+                        <li class="skill-tag">JavaScript (ES6+)</li>
+                        <li class="skill-tag">HTML5</li>
+                        <li class="skill-tag">CSS3</li>
+                        <li class="skill-tag">Tailwind CSS</li>
+                        <li class="skill-tag">Bootstrap</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-category-title">Tools & Workflow</div>
+                    <ul class="skills-container">
+                        <li class="skill-tag">Git</li>
+                        <li class="skill-tag">GitHub</li>
+                        <li class="skill-tag">VS Code</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="education-section">
@@ -533,6 +576,11 @@
                     <div class="degree">Bachelor of Computer Application (BCA)</div>
                     <div class="institution">Kalinga University</div>
                     <div class="education-date">Graduated - 2021</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">Master of Computer Application (MCA)</div>
+                    <div class="institution">ISBN University</div>
+                    <div class="education-date">Graduated - 2023</div>
                 </div>
             </div>
 
@@ -610,6 +658,49 @@
                 <h2 class="section-title">PERSONAL PROJECTS</h2>
 
                 <div class="projects-grid">
+
+                    <div class="project-card">
+
+                        <div class="project-title">
+                            <i class="fas fa-book-open"></i>
+                            Live Library Management System
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">Django-DRF</span>
+                            <span class="tech-tag">AI</span>
+                            <span class="tech-tag">UX/UI Design</span>
+                            <span class="tech-tag">REST APIs</span>
+                        </div>
+
+                        <div class="project-description">
+
+                            <ul>
+                                <li>
+                                    Architected a modern library management platform featuring intuitive book organization, member management, and loan tracking.
+                                </li>
+
+                                <li>
+                                    Implemented backend services and APIs using Django REST Framework (DRF) with AI-enhanced workflows.
+                                </li>
+
+                                <li>
+                                    Designed a seamless, user-friendly digital experience to streamline end-to-end library operations.
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="project-links">
+
+                            <a href="https://librarymanagementsystem-cyan.vercel.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+
+                        </div>
+
+                    </div>
 
                     <div class="project-card">
 
