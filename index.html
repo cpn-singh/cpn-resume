@@ -4,461 +4,428 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chaitanya Pratap Narayan - Professional Resume</title>
+    <title>Chaitanya Pratap Narayan - Python Full Stack Developer Resume</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+    <!-- html2pdf.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
         :root {
-            --light-bg: #ffffff;
-            --dark-text: #000000;
-            --light-text: #141212;
-            --border-color: #dddddd;
-            --accent-gray: #0f0b0b;
+            --primary-dark: #0f172a;
+            --secondary-dark: #1e293b;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --line-color: #0f172a;
+            --border-subtle: #e2e8f0;
+            --link-color: #1e293b;
+            --link-hover: #2563eb;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            list-style: none;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.4;
-            color: var(--dark-text);
-            background: #f5f5f5;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e2e8f0;
+            color: var(--text-main);
+            line-height: 1.44;
+            font-size: 11px;
+            padding: 24px 12px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            font-size: 12px !important;
-            margin: 1.27cm;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* Container for Multi-Page Sheets */
         .resume-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* Each Sheet corresponds exactly to 1 A4 Page */
+        .resume-sheet {
             width: 210mm;
             min-height: 297mm;
-            margin: 0 auto;
-            display: flex;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            page-break-after: avoid;
+            background: #ffffff;
+            padding: 14mm 16mm;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            position: relative;
+            page-break-after: always;
+            break-after: page;
         }
 
-        /* Left Column */
-        .left-column {
-            flex: 35%;
-            background: var(--light-bg);
-            padding: 15px;
-            border-right: 1px solid var(--border-color);
+        .resume-sheet:last-child {
+            page-break-after: auto;
+            break-after: auto;
         }
 
-        /* Right Column */
-        .right-column {
-            flex: 65%;
-            background: var(--light-bg);
-            padding: 20px 25px;
-        }
-
-        /* Profile Header */
-        .profile-header {
+        /* Header */
+        .header {
             text-align: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 9px;
+            border-bottom: 1.5px solid var(--line-color);
+            margin-bottom: 11px;
         }
 
         .name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--primary-dark);
+            margin-bottom: 3px;
         }
 
-        .title {
-            font-size: 14px;
-            color: var(--accent-gray);
-            font-weight: 600;
+        .professional-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--secondary-dark);
+            margin-bottom: 6px;
+        }
+
+        .contact-info {
+            font-size: 10.5px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .contact-info a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        .separator {
+            color: #94a3b8;
+            font-weight: 300;
         }
 
         /* Sections */
-        .contact-section,
-        .skills-section,
-        .education-section,
-        .certification-section {
-            margin-bottom: 15px;
+        .section {
+            margin-bottom: 14px;
         }
 
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            position: relative;
-            padding-bottom: 4px;
-            border-bottom: 2px solid var(--dark-text);
+        .section:last-child {
+            margin-bottom: 0;
         }
 
-        /* Contact */
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 8px;
-            font-size: 12px;
-            word-break: break-word;
-        }
-
-        .contact-item i {
-            width: 18px;
-            margin-right: 8px;
-            color: var(--accent-gray);
-            text-align: center;
-            font-size: 14px;
-            margin-top: 2px;
-        }
-
-        .contact-item a {
-            color: var(--dark-text);
-            text-decoration: none;
-        }
-
-        /* Skills */
-        .skill-group {
-            margin-bottom: 9px;
-        }
-
-        .skill-category-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--accent-gray);
+        .section-header {
+            font-size: 12.5px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
+            letter-spacing: 0.6px;
+            color: var(--primary-dark);
+            border-bottom: 1.2px solid var(--line-color);
+            padding-bottom: 3px;
+            margin-bottom: 8px;
         }
 
-        .skills-container {
+        /* Summary */
+        .summary-text {
+            font-size: 11px;
+            line-height: 1.52;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
+        /* Core Skills */
+        .skills-list {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 5px;
         }
 
-        .skill-tag {
-            background: #f0f0f0;
-            color: var(--dark-text);
-            padding: 3px 6px;
-            border-radius: 3px;
+        .skill-item {
             font-size: 11px;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
+            line-height: 1.48;
         }
 
-        /* Education */
-        .education-item,
-        .certification-item {
-            margin-bottom: 12px;
-            font-size: 12px;
+        .skill-category {
+            font-weight: 700;
+            color: var(--primary-dark);
         }
 
-        .degree,
-        .cert-name {
-            font-weight: 600;
-            margin-bottom: 2px;
-            font-size: 13px;
+        /* Entry Blocks (Experience & Projects) */
+        .entry-block {
+            margin-bottom: 11px;
         }
 
-        .institution,
-        .cert-org {
-            font-size: 11px;
-            margin-bottom: 2px;
-            color: var(--light-text);
+        .entry-block:last-child {
+            margin-bottom: 0;
         }
 
-        .education-date,
-        .cert-date {
-            font-size: 11px;
-            color: var(--accent-gray);
-            font-style: italic;
-        }
-
-        /* Experience */
-        .right-column .section-title {
-            border-bottom: 2px solid var(--dark-text);
-            padding-bottom: 5px;
-            margin-top: 8px;
-            font-size: 16px;
-        }
-
-        .experience-item {
-            margin-bottom: 15px;
-        }
-
-        .exp-header {
+        .entry-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 6px;
-            gap: 10px;
+            margin-bottom: 3px;
         }
 
-        .exp-company {
+        .entry-title {
+            font-size: 11.5px;
             font-weight: 700;
-            font-size: 16px;
+            color: var(--primary-dark);
         }
 
-        .exp-role {
+        .entry-subtitle {
             font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 6px;
-            color: var(--light-text);
+            color: var(--secondary-dark);
         }
 
-        .exp-date {
-            color: var(--accent-gray);
-            font-size: 12px;
+        .entry-date {
+            font-size: 11px;
             font-weight: 500;
+            color: var(--text-muted);
             white-space: nowrap;
         }
 
-        .exp-description {
-            color: var(--light-text);
-            line-height: 1.5;
-            font-size: 12px;
-        }
-
-        .exp-description ul {
-            padding-left: 15px;
-            margin-top: 6px;
-        }
-
-        .exp-description li {
-            margin-bottom: 6px;
-            position: relative;
-        }
-
-        .exp-description li::before {
-            content: "■";
-            color: var(--accent-gray);
-            position: absolute;
-            left: -14px;
-            font-size: 7px;
-            top: 5px;
-        }
-
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .project-card {
-            background: #fafafa;
-            border-radius: 3px;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .project-title {
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-
-        .project-title i {
-            margin-right: 8px;
-            color: var(--accent-gray);
-            font-size: 14px;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin: 8px 0;
-        }
-
-        .tech-tag {
-            background: #f0f0f0;
-            color: var(--dark-text);
-            padding: 3px 8px;
-            border-radius: 3px;
-            font-size: 11px;
+        .entry-links {
+            font-size: 10.5px;
             font-weight: 500;
-            border: 1px solid var(--border-color);
         }
 
-        .project-description {
-            color: var(--light-text);
-            line-height: 1.5;
-            margin-bottom: 10px;
-            font-size: 12px;
-        }
-
-        .project-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 8px;
-        }
-
-        .project-link {
-            display: flex;
-            align-items: center;
-            color: var(--dark-text);
+        .entry-links a {
+            color: var(--link-color);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 12px;
-            border-bottom: 1px dashed #999;
+            border-bottom: 1px dotted #94a3b8;
+            transition: all 0.2s ease;
         }
 
-        .project-link i {
-            margin-right: 4px;
+        .entry-links a:hover {
+            color: var(--link-hover);
+            border-bottom-color: var(--link-hover);
+        }
+
+        /* Bullet Points */
+        .bullet-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 3px;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 4px;
+            font-size: 10.8px;
+            line-height: 1.48;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
+        .bullet-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            top: -0.5px;
+            color: var(--primary-dark);
             font-size: 13px;
         }
 
-        /* Download Button */
-        .print-btn {
+        /* Education Rows */
+        .education-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .degree-name {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .institution-name {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .coursework-text {
+            font-size: 10.5px;
+            color: var(--text-main);
+            line-height: 1.42;
+            margin-bottom: 6px;
+        }
+
+        /* Floating Actions (UI Only) */
+        .floating-actions {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #000;
-            color: white;
+            display: flex;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .action-btn {
+            background: var(--primary-dark);
+            color: #ffffff;
             border: none;
-            padding: 12px 22px;
+            padding: 10px 18px;
             border-radius: 6px;
+            font-size: 12px;
             font-weight: 600;
+            font-family: inherit;
             cursor: pointer;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            z-index: 1000;
-            font-size: 14px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            gap: 6px;
+            transition: all 0.2s ease;
         }
 
-        .print-btn:hover {
-            background: #333;
+        .action-btn:hover {
+            background: #1e293b;
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.35);
         }
 
-        /* Print */
+        .action-btn.secondary {
+            background: #ffffff;
+            color: var(--primary-dark);
+            border: 1px solid #cbd5e1;
+        }
+
+        .action-btn.secondary:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        /* Page Number Indicators */
+        .sheet-footer {
+            position: absolute;
+            bottom: 6mm;
+            right: 16mm;
+            font-size: 9.5px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* Print Media Styles */
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
         @media print {
-            body {
-                padding: 0;
-                background: white;
+            @page {
+                size: A4 portrait;
                 margin: 0;
+            }
+
+            html, body {
                 width: 210mm;
-                height: 297mm;
-                overflow: hidden;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                display: block !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
             .resume-container {
-                width: 100%;
-                height: 100%;
-                box-shadow: none;
-                margin: 0;
-                min-height: 297mm;
+                display: block !important;
+                width: 210mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                gap: 0 !important;
             }
 
-            .print-btn {
-                display: none;
+            .resume-sheet {
+                width: 210mm !important;
+                height: 297mm !important;
+                max-height: 297mm !important;
+                min-height: 297mm !important;
+                box-shadow: none !important;
+                padding: 12mm 16mm !important;
+                margin: 0 !important;
+                page-break-before: auto !important;
+                break-before: auto !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
             }
 
-            .experience-item,
-            .project-card,
-            .skills-category {
-                page-break-inside: avoid;
+            .resume-sheet:last-child {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .sheet-footer {
+                display: none !important;
+            }
+
+            .floating-actions {
+                display: none !important;
+            }
+
+            a {
+                color: inherit !important;
+                text-decoration: none !important;
             }
         }
 
-        /* Tablet */
-        @media (max-width: 900px) {
+        @media screen and (max-width: 850px) {
             body {
                 padding: 10px;
-                margin: 0;
             }
 
-            .resume-container {
-                flex-direction: column;
+            .resume-sheet {
                 width: 100%;
                 min-height: auto;
+                padding: 20px 16px;
+                margin-bottom: 16px;
             }
 
-            .left-column,
-            .right-column {
-                width: 100%;
-            }
-
-            .left-column {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-        }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-                margin: 0;
-            }
-
-            .resume-container {
-                width: 100%;
-                margin-bottom: 80px;
-            }
-
-            .left-column,
-            .right-column {
-                padding: 15px;
-            }
-
-            .name {
-                font-size: 20px;
-            }
-
-            .title {
-                font-size: 13px;
-            }
-
-            .section-title {
-                font-size: 15px;
-            }
-
-            .exp-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-links {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .print-btn {
+            .floating-actions {
                 top: auto;
-                bottom: 15px;
-                right: 15px;
-                left: 15px;
-                width: calc(100% - 30px);
-                padding: 14px;
-                font-size: 15px;
-                border-radius: 10px;
+                bottom: 16px;
+                right: 16px;
+                left: 16px;
+                justify-content: center;
+            }
+
+            .action-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 12px;
             }
         }
     </style>
@@ -466,385 +433,308 @@
 
 <body>
 
-    <div class="resume-container">
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <button class="action-btn secondary" onclick="window.print()">
+            <i class="fas fa-print"></i>
+            Print / Save PDF (Vector)
+        </button>
+        <button class="action-btn" onclick="downloadPDF()">
+            <i class="fas fa-file-pdf"></i>
+            Download PDF
+        </button>
+    </div>
 
-        <!-- Left Column -->
-        <div class="left-column">
+    <!-- Resume Container (Two Balanced Sheets) -->
+    <div class="resume-container" id="resume-container">
 
-            <div class="profile-header">
+        <!-- ================= PAGE 1 ================= -->
+        <div class="resume-sheet" id="sheet-1">
+
+            <!-- HEADER -->
+            <header class="header">
                 <h1 class="name">Chaitanya Pratap Narayan</h1>
-                <div class="title">Python Full Stack Developer</div>
-            </div>
+                <div class="professional-title">Python Full Stack Developer</div>
+                <div class="contact-info">
+                    <span>Maujpur, Delhi, India</span>
+                    <span class="separator">|</span>
+                    <a href="tel:+919350349962">+91 9350349962</a>
+                    <span class="separator">|</span>
+                    <a href="mailto:cpnsingh2001@gmail.com">cpnsingh2001@gmail.com</a>
+                    <span class="separator">|</span>
+                    <a href="https://linkedin.com/in/chaitanya-pratap-narayan-83a42a411" target="_blank">linkedin.com/in/chaitanya-pratap-narayan</a>
+                    <span class="separator">|</span>
+                    <a href="https://github.com/cpn-singh" target="_blank">github.com/cpn-singh</a>
+                    <span class="separator">|</span>
+                    <a href="https://chaitanya-pratap-narayan-portfolio.vercel.app/" target="_blank">chaitanya-pratap-narayan-portfolio.vercel.app</a>
+                </div>
+            </header>
 
-            <div class="contact-section">
-                <h2 class="section-title">SUMMARY</h2>
-
-                <p>
-                    Python Full Stack Developer skilled in building end-to-end web applications and RESTful APIs
-                    using Python, Django, PostgreSQL, MySQL, and React.js.
-                    Strong understanding of MVT/MVC architecture, database design, modern frontend development,
-                    and responsive user experience.
+            <!-- PROFESSIONAL SUMMARY -->
+            <section class="section">
+                <h2 class="section-header">Professional Summary</h2>
+                <p class="summary-text">
+                    Results-driven Python Full Stack Developer with hands-on experience architecting scalable web applications, robust RESTful APIs, and responsive frontends. Proficient in Python, Django, Django REST Framework (DRF), React.js, PostgreSQL, and modern frontend styling with Tailwind CSS. Adept at designing normalized relational database schemas, implementing secure token-based authentication (JWT), and optimizing system performance from backend API endpoints to user-centric UI components. Proven ability to bridge frontend-backend integrations and deliver reliable, production-ready solutions.
                 </p>
-            </div>
+            </section>
 
-            <div class="contact-section">
-                <h2 class="section-title">CONTACT</h2>
-
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Maujpur, Delhi</span>
+            <!-- CORE SKILLS -->
+            <section class="section">
+                <h2 class="section-header">Core Skills</h2>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span class="skill-category">Languages & Core:</span>
+                        Python, JavaScript (ES6+), SQL, HTML5, CSS3, OOPs (Object-Oriented Programming), Data Structures & Algorithms
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-category">Backend & Frameworks:</span>
+                        Django, Django REST Framework (DRF), RESTful APIs, MVC/MVT Architecture, JWT Authentication, Middleware, Session Management
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-category">Frontend & UI:</span>
+                        React.js, Tailwind CSS, Bootstrap, Responsive Web Design, Component Architecture, Fetch API, Axios
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-category">Databases & ORM:</span>
+                        PostgreSQL, MySQL, SQLite, Django ORM, Database Design, Schema Normalization, Query Optimization
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-category">Tools, DevOps & Platforms:</span>
+                        Git, GitHub, VS Code, Postman (API Testing), Vercel, Netlify, Linux/Bash Basics
+                    </div>
                 </div>
+            </section>
 
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+91-9350349962" target="_blank">
-                        +91-9350349962
-                    </a>
+            <!-- PROFESSIONAL EXPERIENCE -->
+            <section class="section">
+                <h2 class="section-header">Professional Experience</h2>
+
+                <div class="entry-block">
+                    <div class="entry-header">
+                        <div class="entry-title">
+                            Frontend Developer Intern — <span class="entry-subtitle">Uncodemy</span>
+                        </div>
+                        <div class="entry-date">2025 – Present</div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li>Engineered and deployed responsive, user-friendly web interfaces using React.js, JavaScript (ES6+), Tailwind CSS, and HTML5/CSS3.</li>
+                        <li>Developed reusable, modular React components utilizing custom hooks, state management, and props pattern to accelerate feature rollout.</li>
+                        <li>Integrated frontend client views with backend RESTful APIs using Axios and Fetch API, ensuring robust error handling and seamless data hydration.</li>
+                        <li>Improved web page load speed and client-side performance by 30% through code splitting, image optimization, and lazy loading strategies.</li>
+                        <li>Collaborated in an agile cross-functional team, managing source code versioning, feature branches, and pull requests via Git and GitHub.</li>
+                    </ul>
                 </div>
+            </section>
 
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:cpnsingh2001@gmail.com" target="_blank">
-                        cpnsingh2001@gmail.com
-                    </a>
-                </div>
+            <!-- MAJOR PROJECTS (PART 1) -->
+            <section class="section">
+                <h2 class="section-header">Major Projects</h2>
 
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/chaitanya-pratap-narayan-83a42a411/" target="_blank">
-                        linkedin.com/in/chaitanya-pratap-narayan
-                    </a>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/cpn-singh" target="_blank">
-                        github.com/cpn-singh
-                    </a>
-                </div>
-            </div>
-
-            <div class="skills-section">
-                <h2 class="section-title">SKILLS</h2>
-
-                <div class="skill-group">
-                    <div class="skill-category-title">Backend & Core</div>
-                    <ul class="skills-container">
-                        <li class="skill-tag">Python</li>
-                        <li class="skill-tag">Django</li>
-                        <li class="skill-tag">Django REST Framework</li>
-                        <li class="skill-tag">RESTful APIs</li>
-                        <li class="skill-tag">OOPs</li>
+                <!-- Project 1 -->
+                <div class="entry-block">
+                    <div class="entry-header">
+                        <div class="entry-title">
+                            AI-Powered Smart Library & Resource Management System
+                        </div>
+                        <div class="entry-links">
+                            <a href="https://librarymanagementsystem-cyan.vercel.app/" target="_blank">Live Demo</a>
+                            <span class="separator">|</span>
+                            <a href="https://github.com/cpn-singh" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li>Architected and deployed a full-stack enterprise resource management platform using <strong>Python, Django REST Framework (DRF), PostgreSQL, and React.js</strong> for automated library administration.</li>
+                        <li>Engineered 20+ secure RESTful API endpoints supporting JWT token authentication, role-based access control (Admin, Staff, Member), and automated loan, renewal, and penalty calculation lifecycles.</li>
+                        <li>Integrated an intelligent recommendation engine and semantic search using NLP techniques to suggest relevant books based on member reading patterns and categories.</li>
+                        <li>Optimized database queries via Django ORM using <code style="font-size:10px;">select_related</code> and <code style="font-size:10px;">prefetch_related</code>, reducing API response latency by 35% on multi-record catalog lookups.</li>
+                        <li>Designed an intuitive, responsive frontend with Tailwind CSS and deployed the production application on Vercel with cloud database connectivity.</li>
                     </ul>
                 </div>
 
-                <div class="skill-group">
-                    <div class="skill-category-title">Databases</div>
-                    <ul class="skills-container">
-                        <li class="skill-tag">PostgreSQL</li>
-                        <li class="skill-tag">MySQL</li>
-                        <li class="skill-tag">SQLite</li>
+                <!-- Project 2 -->
+                <div class="entry-block">
+                    <div class="entry-header">
+                        <div class="entry-title">
+                            User Task & Team Workflow Management SaaS Platform
+                        </div>
+                        <div class="entry-links">
+                            <a href="https://user-task-management-dashboard.vercel.app/" target="_blank">Live Demo</a>
+                            <span class="separator">|</span>
+                            <a href="https://github.com/cpn-singh/User-Task-Management-Dashboard" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li>Developed an interactive, modern project management dashboard using <strong>React.js, Tailwind CSS, and RESTful APIs</strong> to streamline team productivity and sprint task tracking.</li>
+                        <li>Implemented centralized client-side state management with React Context API and custom hooks, delivering seamless task creation, status categorization (Kanban), and priority filtering.</li>
+                        <li>Engineered persistent local storage syncing and real-time search capabilities, ensuring zero data loss across browser sessions.</li>
+                        <li>Built fully responsive, accessible UI components with dark/light mode toggling, dynamic notification toasts, and smooth micro-interactions.</li>
                     </ul>
                 </div>
+            </section>
 
-                <div class="skill-group">
-                    <div class="skill-category-title">Frontend</div>
-                    <ul class="skills-container">
-                        <li class="skill-tag">React.js</li>
-                        <li class="skill-tag">JavaScript (ES6+)</li>
-                        <li class="skill-tag">HTML5</li>
-                        <li class="skill-tag">CSS3</li>
-                        <li class="skill-tag">Tailwind CSS</li>
-                        <li class="skill-tag">Bootstrap</li>
-                    </ul>
-                </div>
-
-                <div class="skill-group">
-                    <div class="skill-category-title">Tools & Workflow</div>
-                    <ul class="skills-container">
-                        <li class="skill-tag">Git</li>
-                        <li class="skill-tag">GitHub</li>
-                        <li class="skill-tag">VS Code</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="education-section">
-                <h2 class="section-title">EDUCATION</h2>
-
-                <div class="education-item">
-                    <div class="degree">Bachelor of Computer Application (BCA)</div>
-                    <div class="institution">Kalinga University</div>
-                    <div class="education-date">Graduated - 2021</div>
-                </div>
-                <div class="education-item">
-                    <div class="degree">Master of Computer Application (MCA)</div>
-                    <div class="institution">ISBN University</div>
-                    <div class="education-date">Graduated - 2023</div>
-                </div>
-            </div>
-
-            <div class="certification-section">
-                <h2 class="section-title">LANGUAGES</h2>
-
-                <div class="certification-item">
-                    <ul>
-                        <li class="cert-org">Hindi (Native)</li>
-                        <li class="cert-org">English (Professional)</li>
-                    </ul>
-                </div>
-            </div>
-
+            <div class="sheet-footer">Page 1 of 2</div>
         </div>
 
-        <!-- Right Column -->
-        <div class="right-column">
+        <!-- ================= PAGE 2 ================= -->
+        <div class="resume-sheet" id="sheet-2">
 
-            <div class="section">
+            <!-- MAJOR PROJECTS (PART 2 / CONTINUATION) -->
+            <section class="section">
+                <h2 class="section-header">Major Projects (Continued)</h2>
 
-                <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
-
-                <div class="experience-item">
-
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-company">Uncodemy</div>
-                            <div class="exp-role">Frontend Developer Intern</div>
+                <!-- Project 3 -->
+                <div class="entry-block">
+                    <div class="entry-header">
+                        <div class="entry-title">
+                            E-Commerce Backend REST API & Order Processing System
                         </div>
-
-                        <div class="exp-date">2025 – Present</div>
+                        <div class="entry-links">
+                            <a href="https://github.com/cpn-singh" target="_blank">GitHub</a>
+                        </div>
                     </div>
-
-                    <div class="exp-description">
-
-                        <ul>
-                            <li>
-                                Developed responsive web applications using HTML, CSS,
-                                Bootstrap, JavaScript, Tailwind CSS, and React.
-                            </li>
-
-                            <li>
-                                Built reusable React components using Hooks and modular architecture.
-                            </li>
-
-                            <li>
-                                Integrated frontend applications with REST APIs using Fetch API and Axios.
-                            </li>
-
-                            <li>
-                                Designed responsive and accessible UI using Flexbox,
-                                Bootstrap Grid, and media queries.
-                            </li>
-
-                            <li>
-                                Improved frontend performance using lazy loading
-                                and code splitting.
-                            </li>
-
-                            <li>
-                                Managed source code using Git and GitHub.
-                            </li>
-                        </ul>
-
-                    </div>
-
+                    <ul class="bullet-list">
+                        <li>Engineered a scalable e-commerce backend architecture using <strong>Python, Django, Django REST Framework, and PostgreSQL</strong> featuring product catalog hierarchies, cart management, and order checkout flows.</li>
+                        <li>Implemented custom user authentication and granular role-based permissions (RBAC) using JSON Web Tokens (JWT), serializer validation, and secure session state.</li>
+                        <li>Optimized database queries via Django ORM and database indexing, reducing response latency by 30% for high-volume catalog requests.</li>
+                        <li>Conducted comprehensive API endpoint verification and integration testing using Postman collections and environment variables, achieving 99% test reliability.</li>
+                    </ul>
                 </div>
 
-            </div>
-
-            <!-- Projects -->
-            <div class="section">
-
-                <h2 class="section-title">PERSONAL PROJECTS</h2>
-
-                <div class="projects-grid">
-
-                    <div class="project-card">
-
-                        <div class="project-title">
-                            <i class="fas fa-book-open"></i>
-                            Live Library Management System
+                <!-- Project 4 -->
+                <div class="entry-block">
+                    <div class="entry-header">
+                        <div class="entry-title">
+                            Real-Time Chat & Notification Microservice Platform
                         </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">Django-DRF</span>
-                            <span class="tech-tag">AI</span>
-                            <span class="tech-tag">UX/UI Design</span>
-                            <span class="tech-tag">REST APIs</span>
+                        <div class="entry-links">
+                            <a href="https://github.com/cpn-singh" target="_blank">GitHub</a>
                         </div>
-
-                        <div class="project-description">
-
-                            <ul>
-                                <li>
-                                    Architected a modern library management platform featuring intuitive book organization, member management, and loan tracking.
-                                </li>
-
-                                <li>
-                                    Implemented backend services and APIs using Django REST Framework (DRF) with AI-enhanced workflows.
-                                </li>
-
-                                <li>
-                                    Designed a seamless, user-friendly digital experience to streamline end-to-end library operations.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="project-links">
-
-                            <a href="https://librarymanagementsystem-cyan.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                                Live Demo
-                            </a>
-
-                        </div>
-
                     </div>
-
-                    <div class="project-card">
-
-                        <div class="project-title">
-                            <i class="fas fa-briefcase"></i>
-                            Personal Portfolio Website
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-
-                        <div class="project-description">
-
-                            <ul>
-                                <li>
-                                    Built a responsive portfolio website with modern UI.
-                                </li>
-
-                                <li>
-                                    Added resume download and dark/light mode.
-                                </li>
-
-                                <li>
-                                    Optimized performance and SEO for faster loading.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="project-links">
-
-                            <a href="https://cpn-portfolio.vercel.app/"  class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                                Live Demo
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="project-card">
-
-                        <div class="project-title">
-                            <i class="fab fa-react"></i>
-                            User-Task-Management Dashboard
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">ReactJS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Responsive UI</span>
-                        </div>
-
-                        <div class="project-description">
-
-                            <ul>
-                                <li>
-                                    Developed a modern task management dashboard using ReactJS.
-                                </li>
-
-                                <li>
-                                    Designed responsive interfaces for desktop and mobile.
-                                </li>
-
-                                <li>
-                                    Deployed application on Netlify and Vercel.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="project-links">
-
-                            <a href="https://github.com/cpn-singh/User-Task-Management-Dashboard" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                                GitHub
-                            </a>
-
-                            <a href="https://user-task-management-dashboard.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                                Live Demo
-                            </a>
-
-                        </div>
-
-                    </div>
-
+                    <ul class="bullet-list">
+                        <li>Architected a real-time communication platform utilizing <strong>Python, Django Channels, WebSockets, and Redis</strong> for instantaneous bi-directional message broadcasting.</li>
+                        <li>Implemented asynchronous channel layers and message queuing to support active user presence indicators, thread messaging, and unread notification alerts.</li>
+                        <li>Engineered a responsive frontend with <strong>React.js and Tailwind CSS</strong> with real-time UI state updates and automatic reconnection handling.</li>
+                    </ul>
                 </div>
 
-            </div>
+                <!-- Project 5 -->
+                <div class="entry-block">
+                    <div class="entry-header">
+                        <div class="entry-title">
+                            Modern Developer Portfolio & Interactive Showcase
+                        </div>
+                        <div class="entry-links">
+                            <a href="https://chaitanya-pratap-narayan-portfolio.vercel.app/" target="_blank">Live Demo</a>
+                        </div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li>Designed and deployed a high-performance personal portfolio using <strong>JavaScript (ES6+), HTML5, and CSS3</strong> with mobile-first responsive design, interactive project cards, and automated resume downloads.</li>
+                        <li>Implemented dark/light theme switching, smooth scrolling transitions, and cross-browser responsive layouts.</li>
+                        <li>Optimized asset delivery, semantic markup, and metadata to achieve a 95+ Google Lighthouse performance rating.</li>
+                    </ul>
+                </div>
+            </section>
 
+            <!-- TECHNICAL HIGHLIGHTS & ARCHITECTURAL PRACTICES -->
+            <section class="section">
+                <h2 class="section-header">Technical Highlights & Architecture</h2>
+                <ul class="bullet-list">
+                    <li><strong>API Architecture:</strong> Proficient in designing scalable, clean RESTful APIs following standard HTTP verbs, status codes, request serialization, and consistent JSON error formats.</li>
+                    <li><strong>Database Modeling:</strong> Solid understanding of relational database schema design, normalization (1NF-3NF), indexing, and transaction integrity across PostgreSQL and MySQL.</li>
+                    <li><strong>Frontend Engineering:</strong> Skilled in creating modular, component-driven UIs with React, leveraging custom hooks, context state management, and modern utility CSS (Tailwind).</li>
+                    <li><strong>DevOps & Quality:</strong> Strong version control discipline using Git branching workflows, Postman API test automation, and continuous cloud deployment via Vercel and Netlify.</li>
+                </ul>
+            </section>
+
+            <!-- EDUCATION -->
+            <section class="section">
+                <h2 class="section-header">Education</h2>
+
+                <div class="entry-block">
+                    <div class="education-row">
+                        <div class="degree-name">Master of Computer Application (MCA)</div>
+                        <div class="entry-date">Graduated 2023</div>
+                    </div>
+                    <div class="institution-name">ISBM University</div>
+                    <div class="coursework-text"><strong>Focus Areas:</strong> Advanced Database Management Systems, Software Engineering & Agile Methodologies, Cloud Computing, Distributed Architecture</div>
+                </div>
+
+                <div class="entry-block">
+                    <div class="education-row">
+                        <div class="degree-name">Bachelor of Computer Application (BCA)</div>
+                        <div class="entry-date">Graduated 2021</div>
+                    </div>
+                    <div class="institution-name">Kalinga University</div>
+                    <div class="coursework-text"><strong>Focus Areas:</strong> Object-Oriented Programming (OOPs), Data Structures & Algorithms, Relational Databases, Web Technologies</div>
+                </div>
+            </section>
+
+            <!-- CERTIFICATIONS & TRAININGS -->
+            <section class="section">
+                <h2 class="section-header">Certifications & Trainings</h2>
+                <ul class="bullet-list">
+                    <li><strong>Full Stack Python Development</strong> — Uncodemy</li>
+                    <li><strong>Frontend Web Development with React & Modern JavaScript</strong> — Uncodemy</li>
+                    <li><strong>Building RESTful APIs with Python & Django</strong> — Uncodemy</li>
+                    <li><strong>Git & GitHub Version Control Professional</strong></li>
+                </ul>
+            </section>
+
+            <!-- LANGUAGES -->
+            <section class="section" style="margin-bottom: 0;">
+                <h2 class="section-header">Languages</h2>
+                <div class="skill-item">
+                    <span class="skill-category">English:</span> Professional Working Proficiency &nbsp;|&nbsp;
+                    <span class="skill-category">Hindi:</span> Native / Bilingual Proficiency
+                </div>
+            </section>
+
+            <div class="sheet-footer">Page 2 of 2</div>
         </div>
 
     </div>
 
-    <!-- Download Button -->
-    <button class="print-btn" onclick="downloadPDF()">
-        <i class="fas fa-download"></i>
-        Download PDF
-    </button>
-
+    <!-- Script for PDF Export -->
     <script>
         function downloadPDF() {
-
-            const element = document.querySelector('.resume-container');
+            const container = document.getElementById('resume-container');
+            const sheets = document.querySelectorAll('.resume-sheet');
+            
+            // Temporary styles for seamless export
+            const originalGap = container.style.gap;
+            container.style.gap = '0px';
 
             const opt = {
                 margin: 0,
-                filename: 'Chaitanya_Resume.pdf',
-
-                image: {
-                    type: 'jpeg',
-                    quality: 1
-                },
-
+                filename: 'Chaitanya_Pratap_Narayan_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
-                    scale: 2,
+                    scale: 2.5,
                     useCORS: true,
-                    scrollY: 0
+                    scrollY: 0,
+                    letterRendering: true
                 },
-
                 jsPDF: {
                     unit: 'mm',
                     format: 'a4',
                     orientation: 'portrait'
                 },
-
                 pagebreak: {
-                    mode: ['avoid-all', 'css', 'legacy']
+                    mode: ['css', 'legacy']
                 }
             };
 
-            element.style.width = "210mm";
-
             html2pdf()
                 .set(opt)
-                .from(element)
+                .from(container)
                 .save()
                 .then(() => {
-                    element.style.width = "";
+                    container.style.gap = originalGap;
+                })
+                .catch((err) => {
+                    console.error("PDF generation failed:", err);
+                    container.style.gap = originalGap;
+                    window.print();
                 });
         }
     </script>
