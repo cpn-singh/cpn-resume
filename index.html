@@ -72,8 +72,8 @@
         }
 
         .resume-sheet:last-child {
-            page-break-after: auto;
-            break-after: auto;
+            page-break-after: avoid;
+            break-after: avoid;
         }
 
         /* Header */
@@ -334,6 +334,7 @@
             color: #94a3b8;
             font-weight: 500;
         }
+
 
         /* Print Media Styles */
         @page {
@@ -694,46 +695,53 @@
 
     <!-- Script for PDF Export -->
     <script>
-        function downloadPDF() {
-            const container = document.getElementById('resume-container');
+        async function downloadPDF() {
             const sheets = document.querySelectorAll('.resume-sheet');
-            
-            // Temporary styles for seamless export
-            const originalGap = container.style.gap;
-            container.style.gap = '0px';
+            const downloadBtn = document.querySelector('.action-btn:not(.secondary)');
+            const originalBtnHtml = downloadBtn ? downloadBtn.innerHTML : '';
 
-            const opt = {
-                margin: 0,
-                filename: 'Chaitanya_Pratap_Narayan_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: {
-                    scale: 2.5,
+            // Update button state to indicate progress
+            if (downloadBtn) {
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+                downloadBtn.style.pointerEvents = 'none';
+            }
+
+            try {
+                // Initialize clean jsPDF instance via html2pdf worker
+                const dummy = document.createElement('div');
+                dummy.innerHTML = ' ';
+                const worker = html2pdf().set({
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                }).from(dummy).toPdf();
+                const pdf = await worker.get('pdf');
+
+                const opt = {
+                    scale: 2,
                     useCORS: true,
+                    scrollX: 0,
                     scrollY: 0,
                     letterRendering: true
-                },
-                jsPDF: {
-                    unit: 'mm',
-                    format: 'a4',
-                    orientation: 'portrait'
-                },
-                pagebreak: {
-                    mode: ['css', 'legacy']
-                }
-            };
+                };
 
-            html2pdf()
-                .set(opt)
-                .from(container)
-                .save()
-                .then(() => {
-                    container.style.gap = originalGap;
-                })
-                .catch((err) => {
-                    console.error("PDF generation failed:", err);
-                    container.style.gap = originalGap;
-                    window.print();
-                });
+                for (let i = 0; i < sheets.length; i++) {
+                    if (i > 0) {
+                        pdf.addPage();
+                    }
+                    const canvas = await html2pdf().set({ html2canvas: opt }).from(sheets[i]).toCanvas().get('canvas');
+                    const imgData = canvas.toDataURL('image/jpeg', 0.98);
+                    pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+                }
+
+                pdf.save('Chaitanya_Pratap_Narayan_Resume.pdf');
+            } catch (err) {
+                console.error("PDF generation failed:", err);
+                window.print();
+            } finally {
+                if (downloadBtn) {
+                    downloadBtn.innerHTML = originalBtnHtml;
+                    downloadBtn.style.pointerEvents = 'auto';
+                }
+            }
         }
     </script>
 
